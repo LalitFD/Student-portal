@@ -17,8 +17,18 @@ class Student extends Component {
         let Contact = this.contactInput.value;
         let Branch = this.branchInput.value;
 
-        let newStudent = { name, Rollnumber, Contact, Branch };
-        this.setState({ studentList: [...this.state.studentList, newStudent] })
+        if (!Rollnumber || !name || !Contact || !Branch) {
+            window.alert("Please fill all the fields")
+        }
+        else {
+            if (this.state.studentList.filter((student) => { return student.Rollnumber == Rollnumber })) {
+                window.alert("Roll number already exists")
+            }
+            else {
+                let newStudent = { name, Rollnumber, Contact, Branch };
+                this.setState({ studentList: [...this.state.studentList, newStudent] })
+            }
+        }
     }
 
     removeStudent = (roll) => {
